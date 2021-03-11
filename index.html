@@ -35,6 +35,9 @@
 
 <body>
     <a-scene>
+        <!-- Ambient light -->
+        <a-entity light="type: ambient"></a-entity>
+        
         <!-- Ask user for camera permissions, display some text if permission is denied -->
         <a-entity zappar-permissions-ui id="permissions"></a-entity>
         <!-- shows a full-page dialog that informs the user they're using an unsupported browser -->
@@ -50,7 +53,6 @@
             <a-entity gltf-model="url(assets/Starship/scene.gltf)" scale="0.15, 0.15, 0.15"></a-entity>
 
         </a-entity>
-        <a-entity light="type: ambient"></a-entity>
         
     </a-scene>
 
