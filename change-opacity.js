@@ -4,7 +4,7 @@ AFRAME.registerComponent('change-opacity', {
     },
     update: function () {
       var mesh = this.el.getObject3D('mesh');
-      var opacity = 0.5;
+      var opacity = 1.0;
       if (!mesh) { return; }
       mesh.traverse(function (node) {
         if (node.isMesh) {
