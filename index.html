@@ -1,76 +1,78 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8">
+    <title>Remembering The CIV 2</title>
 
-<head>
-    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
-    <script src="https://libs.zappar.com/zappar-aframe/0.3.6/zappar-aframe.js"></script>
+    <!-- We've included a slightly modified version of A-Frame, which fixes some polish concerns -->
+    <script src="//cdn.8thwall.com/web/aframe/8frame-0.8.2.min.js"></script>
+    <script defer src="//cdn.8thwall.com/web/aframe/aframe-animation-component-5.1.2.min.js"></script>
+    <script src="//cdn.8thwall.com/web/aframe/aframe-extras-4.2.0.min.js"></script>
 
-    <meta charset="utf-8" />
-    <title>Tech Core Instant tracking Example 1- </title>
-    <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-        }
+    <!-- XR Extras - provides utilities like load screen, almost there, and error handling.
+         See github.com/8thwall/web/xrextras -->
+    <script src="//cdn.8thwall.com/web/xrextras/xrextras.js"></script>
 
-        #zappar-placement-ui {
-            position: absolute;
-            bottom: 80px;
-            width: 200px;
-            left: calc(50% - 100px);
+    <script src="gesture-detector.js"></script>
+    <script src="hold-drag.js"></script>
+    <script src="pinch-scale.js"></script>
+    <script src="two-finger-spin.js"></script>
+    <script src="change-opacity.js"></script>
 
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            text-align: center;
-            font-family: sans-serif;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
-</head>
+    <!--App Key-->
+    <script async src="//apps.8thwall.com/xrweb?appKey=6gEFCc8CEwxAOQVBZIDOdzsUbMLnxbhZdU4OnL4L444wTzN0MjRhXhtMe8cyNOsESYfSp0"></script>
 
-<body>
-    <a-scene>
+  </head>
+  <body>
 
-        <!-- Ask user for camera permissions, display some text if permission is denied -->
-        <a-entity zappar-permissions-ui id="permissions"></a-entity>
-        <!-- shows a full-page dialog that informs the user they're using an unsupported browser -->
-        <a-entity zappar-compatibility-ui id="compatibility"></a-entity>
 
-        <a-camera zappar-camera />
+    <a-scene
+      gesture-detector
+      xrextras-almost-there
+      xrextras-loading
+      xrextras-runtime-error
+      xrweb>
 
-        <!-- Setup our instant tracker and start it in placement mode so the user can -->
-        <!-- choose a location for the object -->
-        <a-entity zappar-instant="placement-mode: true" id="instant-tracker">
+      <!-- We can define assets here to be loaded when A-Frame initializes -->
+      <a-assets>
+        <a-asset-item id="3dmodel" src="Assets/FBXlambert.glb"></a-asset-item>
+      </a-assets>
 
-            <!-- Include a 3D model inside our instant tracker -->
-            <a-entity gltf-model="url(assets/Starship/scene.gltf)" scale="0.15, 0.15, 0.15"></a-entity>
+      <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
+      <a-camera
+        id="camera"
+        position="0 8 8"
+        raycaster="objects: .cantap"
+        cursor="
+          fuse: false;
+          rayOrigin: mouse;">
+      </a-camera>
 
-        </a-entity>
-        
-        <a-light type="ambient" color="#FFFFFF" intesity="0.4"></a-entity>
-        <a-light type="directional" color="#FFFFFF" intesity="0.8" castShadow="true" position="-1, 0, 0"></a-entity>
-        
+      <a-entity
+        light="type: directional;
+               intensity: 0.8;"
+        position="1 4.3 2.5">
+      </a-entity>
+
+      <a-light type="ambient" intensity="1"></a-light>
+
+      <a-entity
+        id="model"
+        gltf-model="#3dmodel"
+        class="cantap"
+        scale="0.5 0.5 0.5"
+        animation-mixer="clip: idle; loop: repeat"
+        change-opacity hold-drag two-finger-spin pinch-scale>
+      </a-entity>
+
+      <a-entity
+        id="ground"
+        class="cantap"
+        geometry="primitive: box"
+        material="color: #ffffff; transparent: true; opacity: 0.0"
+        scale="1000 2 1000"
+        position="0 -1 0">
+      </a-entity>
     </a-scene>
-
-    <!-- Some UI for the user to tap to indicate they're happy with the placement -->
-    <div id="zappar-placement-ui">Tap here to place the object</div>
-
-    <script>
-        // Listen for when the user taps the UI
-        const placementUI = document.getElementById("zappar-placement-ui");
-        placementUI.addEventListener("click", function() {
-            // Set placement mode to false on our instant tracker
-            const instantTracker = document.getElementById("instant-tracker");
-            instantTracker.setAttribute("zappar-instant", "placement-mode: false");
-            // And remove the placement UI
-            placementUI.remove();
-        });
-    </script>
-</body>
-
+  </body>
 </html>
