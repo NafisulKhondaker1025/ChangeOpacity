@@ -29,7 +29,7 @@ AFRAME.registerComponent('physics-image-target', {
           property: 'scale',
           dur: 1500,
           from: '0.001 0.001 0.001',
-          to: '0.5 0.5 0.5',
+          to: '10 10 10',
           easing: 'easeInOutQuad',
         })
       }
