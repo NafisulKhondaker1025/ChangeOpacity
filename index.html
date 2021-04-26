@@ -8,71 +8,59 @@
     <script src="//cdn.8thwall.com/web/aframe/8frame-0.8.2.min.js"></script>
     <script defer src="//cdn.8thwall.com/web/aframe/aframe-animation-component-5.1.2.min.js"></script>
     <script src="//cdn.8thwall.com/web/aframe/aframe-extras-4.2.0.min.js"></script>
+    <script src="//cdn.8thwall.com/web/aframe/aframe-physics-system-4.0.1.min.js"></script>
 
     <!-- XR Extras - provides utilities like load screen, almost there, and error handling.
          See github.com/8thwall/web/xrextras -->
     <script src="//cdn.8thwall.com/web/xrextras/xrextras.js"></script>
+    <script src="image-target.js"></script>
 
-    <script src="gesture-detector.js"></script>
-    <script src="hold-drag.js"></script>
-    <script src="pinch-scale.js"></script>
-    <script src="two-finger-spin.js"></script>
-    <script src="change-opacity.js"></script>
 
     <!--App Key-->
     <script async src="//apps.8thwall.com/xrweb?appKey=6gEFCc8CEwxAOQVBZIDOdzsUbMLnxbhZdU4OnL4L444wTzN0MjRhXhtMe8cyNOsESYfSp0"></script>
 
   </head>
-  <body>
-
-
-    <a-scene
-      gesture-detector
-      xrextras-almost-there
-      xrextras-loading
-      xrextras-runtime-error
-      xrweb>
-
-      <!-- We can define assets here to be loaded when A-Frame initializes -->
-      <a-assets>
-        <a-asset-item id="3dmodel" src="assets/scene.glb"></a-asset-item>
-      </a-assets>
-
-      <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
-      <a-camera
-        id="camera"
-        position="0 8 8"
-        raycaster="objects: .cantap"
-        cursor="
-          fuse: false;
-          rayOrigin: mouse;">
-      </a-camera>
-
-      <a-entity
-        light="type: directional;
-               intensity: 0.8;"
-        position="1 4.3 2.5">
-      </a-entity>
-
-      <a-light type="ambient" intensity="1"></a-light>
-
-      <a-entity
-        id="model"
-        gltf-model="#3dmodel"
-        class="cantap"
-        scale="0.5 0.5 0.5"
-        animation-mixer="clip: idle; loop: repeat"
-        change-opacity hold-drag two-finger-spin pinch-scale>
-      </a-entity>
-
-      <a-entity
-        id="ground"
-        class="cantap"
-        geometry="primitive: box"
-        material="color: #ffffff; transparent: true; opacity: 0.0"
-        scale="1000 2 1000"
-        position="0 -1 0">
-      </a-entity>
-    </a-scene>
-  </body>
+  <a-scene
+  xrextras-almost-there
+  xrextras-loading
+  xrextras-runtime-error
+  renderer="colorManagement: true"
+  xrweb>
+  <a-assets>
+    <a-asset-item id="3dmodel" src="./assets/liveExportGLB.glb"></a-asset-item>
+  </a-assets>
+  <a-camera 
+    position="0 4 10" 
+    raycaster="objects: .cantap" 
+    cursor="fuse: false; rayOrigin: mouse;">
+  </a-camera>
+  <a-entity physics-image-target="name: testimage" visible="false">
+    <a-entity 
+      id="palm" 
+      gltf-model="#3dmodel"
+      class="cantap"
+      scale="0.001 0.001 0.001"
+      rotation="90 0 0"
+      position="0 2 0"
+      shadow>
+    </a-entity>
+    <a-entity id="attachment" position="0 0.1 0.8"></a-entity>
+  </a-entity>
+  <a-entity
+    light="
+      type: directional;
+      intensity: 0.8;
+      castShadow: true;
+      shadowMapHeight:2048;
+      shadowMapWidth:2048;
+      shadowCameraNear: -5;
+      shadowCameraRight: 25;
+      shadowCameraLeft: -25;
+      shadowCameraTop: 25;
+      shadowCameraBottom: -25;"
+    position="0.5 5 0"
+    shadow>
+  </a-entity>
+  <a-light type="ambient" intensity="0.5"></a-light>
+</a-scene>
 </html>
