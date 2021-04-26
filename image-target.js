@@ -10,7 +10,7 @@ AFRAME.registerComponent('physics-image-target', {
       object3D.visible = false
   
       const attachment = scene.querySelector('#attachment')
-      const palm = scene.querySelector('#palm')
+      const palm = scene.querySelector('#civ')
   
       const showImage = ({detail}) => {
         if (name !== detail.name) {
