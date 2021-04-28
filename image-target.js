@@ -10,7 +10,7 @@ AFRAME.registerComponent('physics-image-target', {
       object3D.visible = false
   
       const attachment = scene.querySelector('#attachment')
-      const palm = scene.querySelector('#civ')
+      const obj = scene.querySelector('#civ')
   
       const showImage = ({detail}) => {
         if (name !== detail.name) {
@@ -25,17 +25,13 @@ AFRAME.registerComponent('physics-image-target', {
       const imageFound = (e) => {
         showImage(e)
   
-        palm.setAttribute('animation__riseIn', {
+        obj.setAttribute('animation__riseIn', {
           property: 'scale',
           dur: 1500,
           from: '0.001 0.001 0.001',
-          to: '1000 1000 1000',
+          to: '2 2 2',
           easing: 'easeInOutQuad',
         })
-      }
-  
-      const imageLost = (e) => {
-        // object3D.visible = false
       }
   
       scene.addEventListener('xrimagefound', imageFound)

@@ -30,17 +30,16 @@
     <a-asset-item id="3dmodel" src="./assets/new.glb"></a-asset-item>
   </a-assets>
   <a-camera 
-    position="0 10 10" 
+    position="0 1 10" 
     raycaster="objects: .cantap" 
     cursor="fuse: false; rayOrigin: mouse;">
   </a-camera>
-  <a-entity physics-image-target="name: targetImage" visible="false">
+  <a-entity physics-image-target="name: imageTarget" visible="false">
     <a-entity 
       id="civ" 
       gltf-model="#3dmodel"
       class="cantap"
       rotation="90 0 0"
-      position="0 0 0"
       shadow>
     </a-entity>
     <a-entity id="attachment" position="0 0.1 0.8"></a-entity>
