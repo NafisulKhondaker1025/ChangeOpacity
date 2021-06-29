@@ -1,6 +1,9 @@
 // Copyright (c) 2021 8th Wall, Inc.
 /* globals AFRAME */
 
+
+
+
 // This component hides and shows certain elements as the camera moves
 AFRAME.registerComponent('portal', {
     schema: {
