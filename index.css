@@ -14,14 +14,14 @@
   #container::-webkit-scrollbar {
     display: none;
   }
-  .carousel {
+  /* .carousel {
     padding: 1.5rem;
     border: 0.3rem solid white;
     margin: 0.5rem;
     border-radius: 50%;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     pointer-events:auto;
-  }
+  } */
 
   .btn {
     border: none;

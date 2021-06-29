@@ -14,14 +14,14 @@ AFRAME.registerComponent('change-sky', {
           var sky = document.getElementById('sky')
           sky.setAttribute('src', skyList[currSky])
       }
-      nextButton = document.getElementsByClassName('btn')
+      nextButton = document.getElementById('nxt')
       nextButton.addEventListener('click', function () {
         setPortal()
       })
-      nextButton.classList.add('carousel')
+      //nextButton.classList.add('carousel')
 
       // support horizontal scroll
-      container.style.pointerEvents = 'auto'
+      //container.style.pointerEvents = 'auto'
     },
   })
   
