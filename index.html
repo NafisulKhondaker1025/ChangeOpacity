@@ -4,11 +4,13 @@
     <meta charset="utf-8">
     <title>Welcome NVD 2021</title>
 
+    <link rel="stylesheet" href="index.css">
     <!--Slightly modified version of Aframe acquired from 8th Wall-->
     <script src="//cdn.8thwall.com/web/aframe/8frame-1.1.0.min.js"></script>
     <script src="//cdn.8thwall.com/web/aframe/aframe-extras-6.1.1.min.js"></script>
     <!--8th Wall Library handling the loading screen and other embedded AR functions-->
     <script src="//cdn.8thwall.com/web/xrextras/xrextras.js"></script>
+    <script src="depthkitcomp.js"></script>
 
     <!--8th Wall App Key-->
     <script async src="//apps.8thwall.com/xrweb?appKey=hgNMbjHlObAXMGPog488DMQxtowqbSGMSDRa5VDOjfBQOC0AuZktV0q33vQFfuTjOr4eew"></script>
@@ -17,37 +19,31 @@
 <body>
 
 
-    <a-scene xrextras-almost-there
-             xrextras-loading
-             xrextras-runtime-error
-             xrweb>
-
-        <a-assets>
-            <a-asset-item id="3dmodel" src="assets/balloon.glb"></a-asset-item>
-        </a-assets>
-
-        <a-camera id="camera"
-                  position="0 8 8"
-                  raycaster="objects: .cantap"
-                  cursor="
-          fuse: false;
-          rayOrigin: mouse;">
-        </a-camera>
-
-        <a-entity light="type: directional;
-               intensity: 0.8;"
-                  position="1 4.3 2.5">
-        </a-entity>
-
-        <a-light type="ambient" intensity="1"></a-light>
-
-        <a-entity id="model"
-                  gltf-model="#3dmodel"
-                  scale="1 1 1"
-                  rotation="0 90 0"
-                  position="0 1 -1"
-                  animation-mixer>
-        </a-entity>
+    <div class="prompt"><span id="text">Tap to Place<br>Hologram</span></div>
+    <h2>8th Wall - Depthkit - A-Frame</h2>
+    <a-scene
+    xrextras-tap-recenter
+    landing-page
+    xrextras-loading
+    xrextras-runtime-error
+    xrweb>
+    <a-camera position="0 2 2"></a-camera>
+    <a-entity 
+        id="depthkitEntity" 
+        position="0 1.18 0"
+        scale="1.25 1.25 -1.25"
+        depthkit="capture: autumn; loop: true; opacity: 0.0;">
+    </a-entity>
+    
+    <a-circle
+        id="shadow"
+        visible="false"
+        rotation="-90 45 0"
+        scale="1 0.8 1"
+        src="./assets/shadow.png"
+        opacity="0.4">
+    </a-circle>
+    
     </a-scene>
 </body>
 </html>

@@ -1,4 +1,4 @@
-#container {
+/* #container {
     position: absolute;
     width: 100vw;
     max-height: 20vw;
@@ -23,7 +23,7 @@
     pointer-events:auto;
   } */
 
-  .btn {
+  /* .btn {
     border: none;
     background-color: inherit;
     color: white;
@@ -36,4 +36,38 @@
   .btn:focus {
     box-shadow: 0px 0px 0px 0.3rem white;
     outline: none !important;
+  } */ 
+
+  .prompt {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    bottom: 25vh;
+    
+    font-family: Menlo, monospace;
+    text-shadow: 3px 3px #ad50ff;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 8vw;
+    color: white;
+    
+    pointer-events: none;
+    z-index: 10;
+  }
+  h2 {
+    position: absolute;
+    text-align: center;
+    width: 100vw;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    font-family: Menlo, monospace;
+    text-shadow: 2.5px 2.5px #007aff;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 4.5vw;
+    color: white;
+    
+    z-index: 2;
   }
