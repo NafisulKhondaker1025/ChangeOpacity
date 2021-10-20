@@ -32,8 +32,7 @@ AFRAME.registerComponent('depthkit', {
     } else {
       this.el.setAttribute('rotation', '0 0 0')
     }
-    this.character.load(require('./assets/dktext'),
-      require(`https://biosphere2.blob.core.windows.net/asset-b485af1e-984e-48ea-8af0-9359daf19952/Take 3_Sarape_Porfirio Guitierez08_19_13_22_35_Export_10_06_10_22_44.mp4`), depthkitLoadedCallback)
+    this.character.load('./assets/dktext',`https://biosphere2.blob.core.windows.net/asset-b485af1e-984e-48ea-8af0-9359daf19952/Take 3_Sarape_Porfirio Guitierez08_19_13_22_35_Export_10_06_10_22_44.mp4`, depthkitLoadedCallback)
     dkMesh.add(this.character)
   },
   depthkitLoaded() {
